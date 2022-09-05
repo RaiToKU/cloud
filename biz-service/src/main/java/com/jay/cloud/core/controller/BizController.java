@@ -25,6 +25,7 @@ public class BizController {
 
     @GetMapping("/{id}")
     public String getDataById(@PathVariable Long id) {
+        System.out.println("获取数据" + id);
         return "获取信息";
     }
 
