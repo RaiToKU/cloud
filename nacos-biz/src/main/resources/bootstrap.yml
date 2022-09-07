@@ -1,0 +1,10 @@
+server:
+    port: 8206
+spring:
+    application:
+        name: nacos-biz-service
+    cloud:
+        nacos:
+            config:
+                file-extension: yaml #这里我们获取的yaml格式的配置
+            server-addr: 124.223.68.237:8848
