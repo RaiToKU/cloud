@@ -1,0 +1,31 @@
+server:
+    port: 8401
+spring:
+    application:
+        name: sentinel-service
+    cloud:
+        nacos:
+            server-addr: 124.223.68.237:8848 #配置Nacos地址
+        sentinel:
+            transport:
+                dashboard: 127.0.0.1:8858 #配置sentinel dashboard地址
+                port: 8719
+            datasource:
+                ds1:
+                    nacos:
+                        server-addr: 124.223.68.237:8848
+                        dataId: ${spring.application.name}-sentinel
+                        groupId: DEFAULT_GROUP
+                        data-type: json
+                        rule-type: flow
+feign:
+  sentinel:
+      enabled: true
+
+service-url:
+    biz-service: http://nacos-biz-service
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'

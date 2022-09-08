@@ -20,4 +20,5 @@ public class NacosConfigController {
     public String getBizInfo() {
         return bizInfo;
     }
+
 }

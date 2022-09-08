@@ -1,22 +1,17 @@
 package com.jay.cloud.service;
 
-import com.jay.cloud.service.fallback.BizFallbackService;
+import com.jay.cloud.service.impl.BizFallbackService;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 /**
  * @author raito
- * @date 2022/09/06
+ * @date 2022/09/07
  */
-@Component
-@FeignClient(value = "biz-service", fallback = BizFallbackService.class)
+@FeignClient(value = "nacos-biz-service", fallback = BizFallbackService.class)
 public interface BizService {
 
     @PostMapping("/biz/create")
@@ -25,16 +20,12 @@ public interface BizService {
     @GetMapping("/biz/{id}")
     String getDataById(@PathVariable Long id);
 
-    @GetMapping("/biz/getUserByIds")
-    String getByIds(@RequestParam List<Long> ids);
-
     @GetMapping("/biz/getByUsername")
-    String getByName(@RequestParam String name);
+    String getByUsername(@RequestParam String username);
 
     @PostMapping("/biz/update")
     String update();
 
     @PostMapping("/biz/delete/{id}")
     String delete(@PathVariable Long id);
-
 }
