@@ -1,0 +1,23 @@
+server:
+    port: 8181
+spring:
+    application:
+        name: seata-account-service
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 124.223.68.237:8848
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: rootAa
+        url: jdbc:mysql://192.168.10.71:3306/seata-account
+        username: root
+
+logging:
+    level:
+        io:
+            seata: info
+seata:
+    tx-service-group: fsp_tx_group
+mybatis:
+    mapperLocations: classpath:mapper/*.xml

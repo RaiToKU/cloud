@@ -1,0 +1,21 @@
+package com.jay.cloud.service;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.math.BigDecimal;
+
+/**
+ * @author raito
+ * @date 2022/09/09
+ */
+@FeignClient(value = "seata-account-service")
+public interface AccountService {
+
+    /**
+     * 扣减账户余额
+     */
+    @RequestMapping("/account/decrease")
+    String decrease(@RequestParam("userId") Long userId, @RequestParam("money") BigDecimal money);
+}
