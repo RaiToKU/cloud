@@ -8,16 +8,24 @@ spring:
             discovery:
                 server-addr: 124.223.68.237:8848
     datasource:
-        driver-class-name: com.mysql.jdbc.Driver
-        password: rootAa
-        url: jdbc:mysql://192.168.10.71:3306/seata-storage
-        username: root
+        druid:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            password: rootAa
+            url: jdbc:mysql://192.168.10.71:3306/seata_storage?useUnicode=true&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false
+            username: root
 
 logging:
     level:
         io:
             seata: info
 seata:
-    tx-service-group: fsp_tx_group
+    tx-service-group: my-tx-group
+    service:
+        # 事务组对应的集群民称
+        vgroup-mapping:
+            my-tx-group: seata-server
+        # seata-server的地址
+        grouplist:
+            seata-server: 127.0.0.1:8091
 mybatis:
     mapperLocations: classpath:mapper/*.xml
